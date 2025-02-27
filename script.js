@@ -32,15 +32,23 @@ function displayTasks () {
             'list-group-item',
             'd-flex',
             'justify-content-between',
-            'align-items-center'
+            'align-items-center',
+            'border',
+            'border-dark'
         )
+        li.addEventListener('click', function() {
+            taskList.toggle("complete")
+        })
+
+        
+
         //Set the inner HTML of the <Li> element with task text and a remove button
-        li.innerHTML = `${task} <button class='btn btn-success btn-sm' onclick='removeTask(${index})'>√</button>`
+        li.innerHTML = `${task} <button class='btn btn-success btn-outline-dark btn-sm' onclick='removeTask(${index})'>√</button>`
 
 
         //Append the new task to the task list
         taskList.appendChild(li)
-
+        
     }
     )
 }

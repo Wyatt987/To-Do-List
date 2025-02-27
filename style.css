@@ -1,0 +1,9 @@
+h1 {
+    font-family: "marigny", sans-serif;
+font-weight: 700;
+font-style: italic;
+}
+
+.complete {
+    text-decoration: line-through;
+}
