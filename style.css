@@ -1,9 +1,93 @@
-h1 {
+/* Global Styles */
+body {
     font-family: "marigny", sans-serif;
-font-weight: 700;
-font-style: italic;
+    background-image: url(imgs/grocerystore.jpg);
+    color: white;
 }
 
+/* Heading */
+h1 {
+    font-weight: 700;
+    font-style: italic;
+    color: #f8b400;
+}
+
+/* Task Counter */
+#taskCounter {
+    font-size: 1.2rem;
+    font-weight: bold;
+    background: #333;
+    padding: 8px 15px;
+    border-radius: 8px;
+    display: inline-block;
+}
+
+/* Input Field */
+#taskInput {
+    background: #222;
+    border: 1px solid #555;
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+}
+#taskInput::placeholder {
+    color: #bbb;
+}
+
+/* Buttons */
+.btn {
+    font-size: 1rem;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+/* Add Task Button */
+.btn-primary {
+    background: #f8b400;
+    border: none;
+    color: black;
+    font-weight: bold;
+}
+.btn-primary:hover {
+    background: #ffcc00;
+}
+
+/* Clear All Button */
+.btn-danger {
+    background: #d9534f;
+    border: none;
+}
+.btn-danger:hover {
+    background: #c9302c;
+}
+
+/* Task List */
+.list-group-item {
+    background: #1e1e1e;
+    border: 1px solid #444;
+    color: white;
+    font-size: 1.1rem;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Marked Complete */
 .complete {
     text-decoration: line-through;
+    color: #888;
+    background: #2c2c2c;
+}
+
+/* Task Remove Button */
+.btn-success {
+    background-color: #28a745;
+    border-color: #218838;
+    font-size: 0.9rem;
+}
+.btn-success:hover {
+    background-color: #1e7e34;
 }

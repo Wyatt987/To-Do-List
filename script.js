@@ -1,33 +1,28 @@
-//init an array to store tasks//
-let tasks = []
+// Initialize an array to store tasks
+let tasks = [];
 
-//Add an event listener to add tasks to the add task btn//
-document.getElementById('addTaskBtn').addEventListener('click', function() {
+// Event listener for the Add Task button
+document.getElementById('addTaskBtn').addEventListener('click', addTask);
 
-    let taskInput = document.getElementById('taskInput').value   //Storing the input box as a variable taskInput//
-    
-    if (taskInput) {
+// Function to add a new task
+function addTask() {
+    let taskInput = document.getElementById('taskInput');
+    let taskText = taskInput.value.trim();
 
-        tasks.push(taskInput)  //Adds what is inputed into the text box//
-        document.getElementById('taskInput').value = '' //clears the text box after submitted//
-
-        displayTasks()
+    if (taskText) {
+        tasks.push(taskText);
+        taskInput.value = ''; // Clear input field
+        displayTasks();
     }
-} )
+}
 
-//Function to display the tasks from tasks[] in the URL
-function displayTasks () {
-    //retrieves taskList ID from HTML and sets it as a variable
-    let taskList = document.getElementById('taskList')
-    
-    //Clear the existing task list before updating it
-    taskList.innerHTML = ''
+// Function to display tasks
+function displayTasks() {
+    let taskList = document.getElementById('taskList');
+    taskList.innerHTML = ''; // Clear previous list
 
-    //Loop through each task in the array and create a list item
     tasks.forEach((task, index) => {
-        //Create a mew <li> element for each task
-        let li = document.createElement('li')
-        //Adds different classes to the li tag
+        let li = document.createElement('li');
         li.classList.add(
             'list-group-item',
             'd-flex',
@@ -35,37 +30,43 @@ function displayTasks () {
             'align-items-center',
             'border',
             'border-dark'
-        )
+        );
+        li.textContent = task;
+
+        // Toggle task completion when clicked
         li.addEventListener('click', function() {
-            taskList.toggle("complete")
-        })
+            this.classList.toggle("complete");
+        });
 
-        
+        // Add remove button
+        let removeBtn = document.createElement('button');
+        removeBtn.classList.add('btn', 'btn-success', 'btn-outline-dark', 'btn-sm');
+        removeBtn.innerHTML = '✔';
+        removeBtn.onclick = function() {
+            removeTask(index);
+        };
 
-        //Set the inner HTML of the <Li> element with task text and a remove button
-        li.innerHTML = `${task} <button class='btn btn-success btn-outline-dark btn-sm' onclick='removeTask(${index})'>√</button>`
+        li.appendChild(removeBtn);
+        taskList.appendChild(li);
+    });
 
-
-        //Append the new task to the task list
-        taskList.appendChild(li)
-        
-    }
-    )
+    updateCounter();
 }
 
-//Function to remove a task from the list when the "√" button is clicked
-function removeTask (index){
-    //Remove the task at the given index from the array
-    tasks.splice(index, 1)
-    //Call the function to update the task list displa
-    displayTasks()
-    
+// Function to remove a task
+function removeTask(index) {
+    tasks.splice(index, 1);
+    displayTasks();
 }
 
-//Event Listener for the "Clear All Tasks" button
+// Function to update the task counter
+function updateCounter() {
+    document.getElementById('taskCounter').innerText = `Tasks: ${tasks.length}`;
+}
+
+// Event Listener for the Clear All Tasks button
 document.getElementById('clearTaskBtn').addEventListener('click', function() {
-    tasks= []
-
-    //call the function to update the task list display
-    displayTasks()
-}) 
+    tasks = [];
+    displayTasks();
+    updateCounter(); // Ensure counter resets when clearing tasks
+});
