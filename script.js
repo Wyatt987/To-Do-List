@@ -4,6 +4,13 @@ let tasks = [];
 // Event listener for the Add Task button
 document.getElementById('addTaskBtn').addEventListener('click', addTask);
 
+// Event listener for the Enter key in the input field
+document.getElementById('taskInput').addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        addTask();
+    }
+});
+
 // Function to add a new task
 function addTask() {
     let taskInput = document.getElementById('taskInput');
@@ -32,7 +39,7 @@ function displayTasks() {
             'border-dark'
         );
         li.textContent = task;
-
+        
         // Toggle task completion when clicked
         li.addEventListener('click', function() {
             this.classList.toggle("complete");
